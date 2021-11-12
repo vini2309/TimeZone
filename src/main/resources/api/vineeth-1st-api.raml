@@ -1,0 +1,39 @@
+#%RAML 1.0
+title: vineeth-1st API
+types: 
+  vini: !include schemas/news.raml
+/search:
+  get:
+    queryParameters:
+      keyword:
+        description: This is the query parm which the request is accepted
+        type: string
+        required: true
+        minLength: 3
+        maxLength: 20
+    responses:
+      200:
+        body:
+          application/json:
+            example: !include examples/searchExample.raml
+              
+
+/news:
+  post:
+    queryParameters:
+      country:
+        required: false
+    body:
+      application/json:
+        type: vini
+    responses:
+              201:
+                        body:
+                                  application/json:
+                                            example: !include examples/searchExample.raml
+/sportsnews:
+  put:
+        body:
+              application/json:
+                    type: vini[]    
+        
